@@ -4,5 +4,5 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/Client1-Aston-Vapote/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/aston-vapote/" : "/",
 };
