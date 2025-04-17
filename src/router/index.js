@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import ProductsPage from '@/views/ProductsPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
@@ -11,7 +11,7 @@ import PrivacyPolicyPage from '@/views/PrivacyPolicyPage.vue';
 const routes = [
     {
         path: '/',
-        redirect: '/produits' // Redirection automatique vers la page produits
+        redirect: '/produits'
     },
     {
         path: '/produits',
@@ -58,7 +58,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(), // ✅ compatible GitHub Pages
+    history: createWebHistory(),
     routes
 });
 
