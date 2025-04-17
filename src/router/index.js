@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import ProductsPage from '@/views/ProductsPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
@@ -11,7 +11,7 @@ import PrivacyPolicyPage from '@/views/PrivacyPolicyPage.vue';
 const routes = [
     {
         path: '/',
-        redirect: '/produits' // Redirige vers la vraie page d’accueil
+        redirect: '/produits' // Redirection automatique vers la page produits
     },
     {
         path: '/produits',
@@ -58,16 +58,15 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(), // ✅ compatible GitHub Pages
     routes
 });
 
-// ✅ Garde de navigation
+// ✅ Garde d'âge
 router.beforeEach((to, from, next) => {
     const isAgeVerified = localStorage.getItem('isAgeVerified') === 'true';
 
     if (to.meta.requiresAgeVerification && !isAgeVerified) {
-        // Redirige vers /produits avec la modale
         next('/produits');
     } else {
         next();
