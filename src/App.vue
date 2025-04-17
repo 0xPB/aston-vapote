@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <!-- Header affiché sur toutes les pages sauf la page de vérification d'âge -->
-    <HeaderComponent v-if="$route.path !== '/'" />
+    <!-- Pop-up vérification d'âge -->
+    <AgePopup />
 
-    <!-- Contenu de la page -->
+    <!-- Header affiché sur toutes les pages -->
+    <HeaderComponent />
+
+    <!-- Contenu des pages -->
     <router-view />
 
     <!-- Footer affiché sur toutes les pages -->
@@ -14,22 +17,14 @@
 <script>
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
+import AgePopup from '@/components/AgePopup.vue';
 
 export default {
   name: 'App',
   components: {
     HeaderComponent,
-    FooterComponent
-  },
-  created() {
-    const isAgeVerified = localStorage.getItem('isAgeVerified');
-    if (!isAgeVerified && this.$route.path !== '/') {
-      this.$router.push('/');
-    }
+    FooterComponent,
+    AgePopup
   }
 };
 </script>
-
-<style>
-/* Tu peux ajouter ici des styles globaux si besoin */
-</style>

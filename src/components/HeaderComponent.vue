@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="logo">
-      <router-link to="/home">
+      <router-link to="/produits">
         <img src="@/assets/images/logo.png" alt="Logo Aston Cigarette" class="logo-img" />
       </router-link>
     </div>
@@ -9,7 +9,6 @@
       <i class="fas fa-bars"></i>
     </div>
     <ul :class="{ active: isMenuOpen }">
-      <li><router-link to="/etablissements">Etablissements</router-link></li>
       <li><router-link to="/produits">Produits</router-link></li>
       <li><router-link to="/guide">Guide</router-link></li>
       <li><router-link to="/marques">Marques</router-link></li>

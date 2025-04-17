@@ -1,59 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
+
 import ProductsPage from '@/views/ProductsPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
-import AgeVerification from '@/components/AgeVerification.vue';
 import GuidePage from '@/views/GuidePage.vue';
+import AgenciePage from '@/views/AgenciePage.vue';
 import BrandsPage from '@/views/BrandsPage.vue';
-import AgenciesPage from "@/views/AgenciesPage.vue";
-import LegalNoticePage from '@/views/LegalNoticePage.vue'
-import PrivacyPolicyPage from '@/views/PrivacyPolicyPage.vue'
+import LegalNoticePage from '@/views/LegalNoticePage.vue';
+import PrivacyPolicyPage from '@/views/PrivacyPolicyPage.vue';
 
 const routes = [
     {
         path: '/',
-        component: AgeVerification
-    },
-    {
-        path: '/home',
-        component: HomePage,
-        meta: { requiresAgeVerification: true }
+        redirect: '/produits' // Redirige vers la vraie page d’accueil
     },
     {
         path: '/produits',
+        name: 'Products',
         component: ProductsPage,
         meta: { requiresAgeVerification: true }
     },
     {
         path: '/contact',
+        name: 'Contact',
         component: ContactPage,
         meta: { requiresAgeVerification: true }
     },
     {
         path: '/guide',
+        name: 'Guide',
         component: GuidePage,
         meta: { requiresAgeVerification: true }
     },
     {
         path: '/marques',
+        name: 'Brands',
         component: BrandsPage,
         meta: { requiresAgeVerification: true }
     },
     {
-        path: '/etablissements',
-        component: AgenciesPage,
-        meta: { requiresAgeVerification: true }
-    },
-    {
         path: '/mentions-legales',
+        name: 'LegalNotice',
         component: LegalNoticePage,
-        meta: {requiresAgeVerification: true}
+        meta: { requiresAgeVerification: true }
     },
     {
         path: '/politique-confidentialite',
+        name: 'PrivacyPolicy',
         component: PrivacyPolicyPage,
         meta: { requiresAgeVerification: true }
     },
+    {
+        path: '/agence',
+        name: 'Agencie',
+        component: AgenciePage,
+        meta: { requiresAgeVerification: true }
+    }
 ];
 
 const router = createRouter({
@@ -61,16 +62,13 @@ const router = createRouter({
     routes
 });
 
-// Garde de navigation globale
+// ✅ Garde de navigation
 router.beforeEach((to, from, next) => {
-    const isAgeVerified = localStorage.getItem('isAgeVerified');
+    const isAgeVerified = localStorage.getItem('isAgeVerified') === 'true';
 
-    if (to.matched.some(record => record.meta.requiresAgeVerification)) {
-        if (isAgeVerified) {
-            next();
-        } else {
-            next('/');
-        }
+    if (to.meta.requiresAgeVerification && !isAgeVerified) {
+        // Redirige vers /produits avec la modale
+        next('/produits');
     } else {
         next();
     }
