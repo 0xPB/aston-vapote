@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- Pop-up vérification d'âge -->
+    <!-- Pop-up vérification d'âge (gère l'affichage en interne) -->
     <AgePopup />
 
     <!-- Header affiché sur toutes les pages -->

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import ProductsPage from '@/views/ProductsPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
@@ -54,23 +54,17 @@ const routes = [
         name: 'Agencie',
         component: AgenciePage,
         meta: { requiresAgeVerification: true }
+    },
+    // Fallback vers produits pour toute URL inconnue
+    {
+        path: '/:catchAll(.*)',
+        redirect: '/produits'
     }
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
-});
-
-// ✅ Garde d'âge
-router.beforeEach((to, from, next) => {
-    const isAgeVerified = localStorage.getItem('isAgeVerified') === 'true';
-
-    if (to.meta.requiresAgeVerification && !isAgeVerified) {
-        next('/produits');
-    } else {
-        next();
-    }
 });
 
 export default router;
