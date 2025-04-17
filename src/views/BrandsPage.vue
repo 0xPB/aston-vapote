@@ -14,8 +14,8 @@
             :key="index"
             :style="{ animationDelay: `${index * 100}ms` }"
         >
-          <img :src="brandImage" :alt="brand.name" />
-          <h3>{{ brand.name }}</h3>
+          <img :src="brandImage" :alt="brand.title" />
+          <h3>{{ brand.title }}</h3>
           <p>{{ brand.description }}</p>
         </div>
       </div>

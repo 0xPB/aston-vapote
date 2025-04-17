@@ -1,30 +1,32 @@
 [
   {
-    "title": "Déterminez votre niveau",
-    "description": "Débutant ? Optez pour un kit simple et complet. Idéal pour se lancer sereinement."
+    "title": "GeekVape",
+    "description": "GeekVape est une marque innovante connue pour ses cigarettes électroniques robustes et performantes comme la série Aegis, très appréciée pour leur résistance à l'eau et aux chocs.",
+    "image": "produit.png"
   },
   {
-    "title": "Type de cigarette electronique",
-    "description": "MTL pour un tirage serré, DTL pour une inhalation directe pleine de vapeur."
+    "title": "Voopoo",
+    "description": "Voopoo s'est imposée grâce à ses chipsets performants et ses pods ergonomiques comme le Drag X, alliant design élégant et technologie de pointe.",
+    "image": "produit.png"
   },
   {
-    "title": "Autonomie de la batterie",
-    "description": "Si vous vapotez souvent, privilégiez une batterie de grande capacité (2000 mAh ou +)."
+    "title": "Smok",
+    "description": "Smok est une marque emblématique du domaine de la cigarette électronique, réputée pour ses kits complets puissants et ses clearomiseurs performants comme le TFV18.",
+    "image": "produit.png"
   },
   {
-    "title": "Type de résistance",
-    "description": "≥ 1 ohm pour une cigarette electronique discrète, < 1 ohm pour une vapeur dense et intense."
+    "title": "Vaporesso",
+    "description": "Avec ses produits à la fois fiables et stylés, Vaporesso propose des gammes pour débutants et experts, comme les célèbres XROS et Gen.",
+    "image": "produit.png"
   },
   {
-    "title": "Design & ergonomie",
-    "description": "Choisissez un modèle agréable en main et visuellement à votre goût."
+    "title": "Innokin",
+    "description": "Innokin est une marque respectée pour ses produits simples d'utilisation et durables, idéale pour les primo-vapoteurs avec des modèles comme l'Endura T20.",
+    "image": "produit.png"
   },
   {
-    "title": "Fonctionnalités utiles",
-    "description": "Affichage écran, réglages de puissance, anti-fuite... à vous de choisir ce qui compte."
-  },
-  {
-    "title": "Budget",
-    "description": "Un bon kit démarre autour de 30-50€. Attention aux modèles trop bon marché."
+    "title": "Alfaliquid",
+    "description": "Marque française pionnière dans les e-liquides, Alfaliquid offre une large gamme de saveurs, élaborées avec des ingrédients de haute qualité et certifiés.",
+    "image": "produit.png"
   }
 ]
