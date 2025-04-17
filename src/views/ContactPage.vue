@@ -1,9 +1,20 @@
 <template>
   <div>
     <main>
-      <h2>Contactez-nous</h2>
+      <h2 class="fade-in" style="animation-delay: 0ms;">Contactez-nous</h2>
 
-      <form @submit.prevent="submitForm">
+      <div class="fade-in" style="animation-delay: 100ms; text-align: center; margin-bottom: 20px;">
+        <p>Vous pouvez aussi nous contacter via notre page Facebook :</p>
+        <a
+            href="https://www.facebook.com/astonvapote"
+            target="_blank"
+            class="fb-contact-btn"
+        >
+          📩 Nous écrire sur Facebook
+        </a>
+      </div>
+
+      <form @submit.prevent="submitForm" class="fade-in" style="animation-delay: 200ms;">
         <div class="form-group">
           <label for="nom">Nom *</label>
           <input type="text" id="nom" v-model="nom" required placeholder="Votre nom complet" />
@@ -58,6 +69,7 @@
 
 <script>
 export default {
+  name: 'ContactPage',
   data() {
     return {
       nom: '',
@@ -90,6 +102,19 @@ export default {
 
 <style scoped>
 @import '../assets/styles/styles.css';
+
+.fade-in {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 form {
   max-width: 700px;
@@ -155,5 +180,20 @@ form button {
 
 form button:hover {
   background-color: #900;
+}
+
+.fb-contact-btn {
+  display: inline-block;
+  background-color: #1877f2;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.fb-contact-btn:hover {
+  background-color: #125ecf;
 }
 </style>

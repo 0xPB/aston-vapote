@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="guide-page">
     <main>
       <h2>Guide de sélection de cigarette électronique</h2>
       <p class="intro">
@@ -8,8 +8,13 @@
       </p>
 
       <div class="card-container">
-        <div class="card" v-for="step in guideSteps" :key="step.title">
-          <img :src="step.image" :alt="step.title" />
+        <div
+            class="card fade-in"
+            v-for="(step, index) in guideSteps"
+            :key="index"
+            :style="{ animationDelay: `${index * 100}ms` }"
+        >
+          <img :src="guideImage" :alt="step.title" />
           <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
         </div>
@@ -23,57 +28,31 @@
 </template>
 
 <script>
+import guideSteps from '@/assets/data/guide.json';
+import guideImage from '@/assets/images/produit.png';
+
 export default {
+  name: 'GuidePage',
   data() {
     return {
-      guideSteps: [
-        {
-          title: 'Déterminez votre niveau',
-          description: 'Débutant ? Optez pour un kit simple et complet. Idéal pour se lancer sereinement.',
-          image: 'https://via.placeholder.com/150?text=Débutant'
-        },
-        {
-          title: 'Type de cigarette electronique',
-          description: 'MTL pour un tirage serré, DTL pour une inhalation directe pleine de vapeur.',
-          image: 'https://via.placeholder.com/150?text=MTL+vs+DTL'
-        },
-        {
-          title: 'Autonomie de la batterie',
-          description: 'Si vous vapotez souvent, privilégiez une batterie de grande capacité (2000 mAh ou +).',
-          image: 'https://via.placeholder.com/150?text=Batterie'
-        },
-        {
-          title: 'Type de résistance',
-          description: '≥ 1 ohm pour une cigarette electronique discrète, < 1 ohm pour une vapeur dense et intense.',
-          image: 'https://via.placeholder.com/150?text=Résistance'
-        },
-        {
-          title: 'Design & ergonomie',
-          description: 'Choisissez un modèle agréable en main et visuellement à votre goût.',
-          image: 'https://via.placeholder.com/150?text=Design'
-        },
-        {
-          title: 'Fonctionnalités utiles',
-          description: 'Affichage écran, réglages de puissance, anti-fuite... à vous de choisir ce qui compte.',
-          image: 'https://via.placeholder.com/150?text=Fonctionnalités'
-        },
-        {
-          title: 'Budget',
-          description: 'Un bon kit démarre autour de 30-50€. Attention aux modèles trop bon marché.',
-          image: 'https://via.placeholder.com/150?text=Budget'
-        }
-      ]
+      guideSteps,
+      guideImage
     };
   }
 };
 </script>
 
 <style scoped>
-@import '../assets/styles/styles.css';
+.guide-page {
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
 
 h2 {
   text-align: center;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
+  color: #000;
 }
 
 .intro {
@@ -85,36 +64,57 @@ h2 {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
+  position: relative;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.card h3 {
-  color: #c00;
-  margin-bottom: 1rem;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
   width: 100%;
-  max-width: 150px;
+  max-width: 140px;
   height: auto;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+  margin: 0 auto 1rem auto;
+  border-radius: 10px;
   object-fit: cover;
+}
+
+.card h3 {
+  color: #e30613;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.card p {
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  min-height: 48px;
 }
 
 .conclusion {
@@ -123,5 +123,18 @@ h2 {
   font-weight: bold;
   font-size: 1.05rem;
   color: #990000;
+}
+
+.fade-in {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

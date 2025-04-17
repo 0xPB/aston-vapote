@@ -31,10 +31,11 @@ import productsData from '@/assets/data/products.json';
 import productImage from '@/assets/images/produit.png';
 
 export default {
+  name: 'ProductsPage',
   data() {
     return {
       products: productsData,
-      productImage: productImage
+      productImage
     };
   }
 };

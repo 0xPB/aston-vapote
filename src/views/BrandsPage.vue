@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="brands-page">
     <main>
       <h2>Nos Marques Partenaires</h2>
       <p>
@@ -8,29 +8,15 @@
         avec lesquelles nous collaborons :
       </p>
       <div class="card-container">
-        <div class="card">
-          <h3>GeekVape</h3>
-          <p>GeekVape est une marque innovante connue pour ses cigarettes électroniques robustes et performantes comme la série Aegis, très appréciée pour leur résistance à l'eau et aux chocs.</p>
-        </div>
-        <div class="card">
-          <h3>Voopoo</h3>
-          <p>Voopoo s'est imposée grâce à ses chipsets performants et ses pods ergonomiques comme le Drag X, alliant design élégant et technologie de pointe.</p>
-        </div>
-        <div class="card">
-          <h3>Smok</h3>
-          <p>Smok est une marque emblématique du domaine de la cigarette électronique, réputée pour ses kits complets puissants et ses clearomiseurs performants comme le TFV18.</p>
-        </div>
-        <div class="card">
-          <h3>Vaporesso</h3>
-          <p>Avec ses produits à la fois fiables et stylés, Vaporesso propose des gammes pour débutants et experts, comme les célèbres XROS et Gen.</p>
-        </div>
-        <div class="card">
-          <h3>Innokin</h3>
-          <p>Innokin est une marque respectée pour ses produits simples d'utilisation et durables, idéale pour les primo-vapoteurs avec des modèles comme l'Endura T20.</p>
-        </div>
-        <div class="card">
-          <h3>Alfaliquid</h3>
-          <p>Marque française pionnière dans les e-liquides, Alfaliquid offre une large gamme de saveurs, élaborées avec des ingrédients de haute qualité et certifiés.</p>
+        <div
+            class="card fade-in"
+            v-for="(brand, index) in brands"
+            :key="index"
+            :style="{ animationDelay: `${index * 100}ms` }"
+        >
+          <img :src="brandImage" :alt="brand.name" />
+          <h3>{{ brand.name }}</h3>
+          <p>{{ brand.description }}</p>
         </div>
       </div>
     </main>
@@ -38,38 +24,98 @@
 </template>
 
 <script>
+import brandsData from '@/assets/data/brands.json';
+import brandImage from '@/assets/images/produit.png';
+
+export default {
+  name: 'BrandsPage',
+  data() {
+    return {
+      brands: brandsData,
+      brandImage
+    };
+  }
+};
 </script>
 
 <style scoped>
-@import '../assets/styles/styles.css';
+.brands-page {
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
 
 h2 {
   text-align: center;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
+  color: #000;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
+  position: relative;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  margin: 0 auto 1rem auto;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .card h3 {
-  color: #c00;
+  color: #e30613;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.card p {
+  color: #333;
+  font-size: 0.95rem;
   margin-bottom: 1rem;
+  min-height: 48px;
+}
+
+.fade-in {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

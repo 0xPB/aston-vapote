@@ -13,6 +13,7 @@
       <li><router-link to="/guide">Guide</router-link></li>
       <li><router-link to="/marques">Marques</router-link></li>
       <li><router-link to="/contact">Contact</router-link></li>
+      <li><router-link to="/agence">Agence</router-link></li>
     </ul>
   </nav>
 </template>
