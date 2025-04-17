@@ -114,7 +114,7 @@ footer {
   color: #f5f5f5;
   padding: 40px 20px 0;
   text-align: center;
-  margin-top: 100px;
+  //margin-top: 100px;
 }
 
 /* Animation fade-in */

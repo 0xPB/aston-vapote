@@ -6,7 +6,8 @@
       </router-link>
     </div>
     <div class="menu-toggle" @click="toggleMenu" aria-label="Menu">
-      <i class="fas fa-bars"></i>
+      <i v-if="!isMenuOpen" class="fas fa-bars"></i>
+      <i v-else class="fas fa-times"></i>
     </div>
     <ul :class="{ active: isMenuOpen }">
       <li><router-link to="/produits">Produits</router-link></li>
@@ -37,23 +38,24 @@ export default {
 
 <style scoped>
 nav {
-  background-color: #c00;
+  background-color: #c0392b;
   color: #fff;
-  padding: 0.5rem 1rem; /* réduit la hauteur */
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
-  height: 60px; /* hauteur fixe */
+  height: 60px;
+  z-index: 10; /* Pour que le nav reste au-dessus */
 }
 
 .logo-img {
   height: 60px;
   width: auto;
   display: block;
+  filter: brightness(0) invert(1);
 }
-
 
 nav ul {
   list-style: none;
@@ -82,13 +84,20 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ffddd5;
+  color: #fff;
+  opacity: 0.7;
 }
 
 .menu-toggle {
   display: none;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle i {
+  transition: opacity 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -98,11 +107,13 @@ nav ul li a:hover {
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #c00;
+    background-color: #c0392b;
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
     display: block;
+    padding: 10px;
+    z-index: 1000; /* Très haut pour passer devant tout */
   }
 
   nav ul.active {

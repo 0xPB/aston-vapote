@@ -42,9 +42,10 @@ export default {
 </script>
 
 <style scoped>
+
 .products-page {
   padding: 1.5rem;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
 }
 
 h2 {
