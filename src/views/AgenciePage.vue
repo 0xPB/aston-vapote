@@ -24,39 +24,6 @@
         ></iframe>
       </div>
 
-      <div id="infos" class="fade-in" style="animation-delay: 400ms;">
-        <h3>Informations</h3>
-        <p><strong>Adresse :</strong> 19 avenue du Médoc, 33320 Eysines, France</p>
-
-        <div class="map-buttons">
-          <a
-              href="https://www.google.com/maps/dir/?api=1&destination=19+avenue+du+Médoc,+33320+Eysines"
-              target="_blank"
-              class="map-btn"
-          >
-            S'y rendre avec Maps
-          </a>
-          <a
-              href="https://waze.com/ul?ll=44.88363637107053,-0.629067923825167&navigate=yes"
-              target="_blank"
-              class="map-btn"
-          >
-            S'y rendre avec Waze
-          </a>
-        </div>
-
-        <p><strong>Horaires d'ouverture :</strong></p>
-        <ul>
-          <li>Lundi : 10:00 - 19:00</li>
-          <li>Mardi : 10:00 - 19:00</li>
-          <li>Mercredi : 10:00 - 19:00</li>
-          <li>Jeudi : 10:00 - 19:00</li>
-          <li>Vendredi : 10:00 - 19:00</li>
-          <li>Samedi : 10:00 - 19:00</li>
-          <li>Dimanche : Fermé</li>
-        </ul>
-      </div>
-
       <div id="avis" class="avis-container fade-in" style="animation-delay: 500ms;">
         <h3>Avis de nos clients</h3>
         <div
@@ -119,41 +86,6 @@ export default {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#infos {
-  margin-top: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#infos h3 {
-  color: #c00;
-}
-
-.map-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.map-btn {
-  background-color: #cc0000;
-  color: white;
-  padding: 8px 14px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.map-btn:hover {
-  background-color: #990000;
 }
 
 .avis-container {

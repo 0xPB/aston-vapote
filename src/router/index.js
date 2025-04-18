@@ -7,6 +7,7 @@ import AgenciePage from '@/views/AgenciePage.vue';
 import BrandsPage from '@/views/BrandsPage.vue';
 import LegalNoticePage from '@/views/LegalNoticePage.vue';
 import PrivacyPolicyPage from '@/views/PrivacyPolicyPage.vue';
+import ClickCollectPage from "@/views/ClickCollectPage.vue";
 
 const routes = [
     {
@@ -17,6 +18,12 @@ const routes = [
         path: '/produits',
         name: 'Products',
         component: ProductsPage,
+        meta: { requiresAgeVerification: true }
+    },
+    {
+        path: '/click-collect',
+        name: 'Click & Collect',
+        component: ClickCollectPage,
         meta: { requiresAgeVerification: true }
     },
     {
@@ -64,7 +71,14 @@ const routes = [
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition; // si retour arrière, garder position
+        } else {
+            return { top: 0 }; // sinon scroll en haut
+        }
+    }
 });
 
 export default router;

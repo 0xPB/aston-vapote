@@ -1,44 +1,24 @@
 <template>
-  <footer>
+  <footer class="footer-wrapper">
     <!-- Boutons itinéraires -->
-    <div class="map-buttons fade-in">
-      <a
-          href="https://www.google.com/maps/dir/?api=1&destination=19+avenue+du+Médoc,+33320+Eysines"
-          target="_blank"
-          class="map-btn"
-      >
+    <div class="map-buttons">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=19+avenue+du+Médoc,+33320+Eysines" target="_blank" class="map-btn">
         📍 Itinéraire Google Maps
       </a>
-      <a
-          href="https://waze.com/ul?ll=44.88363637107053,-0.629067923825167&navigate=yes"
-          target="_blank"
-          class="map-btn"
-      >
+      <a href="https://waze.com/ul?ll=44.88363637107053,-0.629067923825167&navigate=yes" target="_blank" class="map-btn">
         🚗 Itinéraire Waze
       </a>
     </div>
 
-    <!-- Contenu principal -->
-    <div class="footer-content fade-in">
-      <!-- Contact -->
-      <div class="contact-section">
+    <div class="footer-content">
+      <div class="footer-section contact">
         <h4>Contactez-nous</h4>
-        <p>
-          <a href="mailto:aston.martine33@gmail.com">
-            <i class="fas fa-envelope"></i> Envoyez un email
-          </a>
-        </p>
-        <p>
-          <a href="tel:+33981398552">
-            <i class="fas fa-phone-alt"></i> Appelez-nous
-          </a>
-        </p>
-        <p>
-          <a href="https://maps.app.goo.gl/P5XwT8TtuTiZSf486" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> 19 avenue du Médoc, Eysines
-          </a>
-        </p>
-
+        <ul>
+          <li><a href="mailto:aston.martine33@gmail.com"><i class="fas fa-envelope"></i> Envoyez un email</a></li>
+          <li><a href="tel:+33981398552"><i class="fas fa-phone-alt"></i> Appelez-nous</a></li>
+          <li><a href="https://maps.app.goo.gl/P5XwT8TtuTiZSf486" target="_blank"><i class="fas fa-map-marker-alt"></i> 19 avenue du Médoc, Eysines</a></li>
+          <li><router-link to="/contact"><i class="fas fa-info-circle"></i> Formulaire de contact</router-link></li>
+        </ul>
         <div class="horaires">
           <h5>Horaires d'ouverture</h5>
           <ul>
@@ -48,38 +28,26 @@
         </div>
       </div>
 
-      <!-- Réseaux sociaux -->
-      <div class="social-section">
+      <div class="footer-section social">
         <h4>Suivez-nous</h4>
-        <a
-            href="https://www.facebook.com/astonvapote"
-            target="_blank"
-            aria-label="Facebook"
-            class="white-link"
-        >
+        <a href="https://www.facebook.com/astonvapote" target="_blank" class="white-link">
           <i class="fab fa-facebook-f"></i> Notre page Facebook
         </a>
       </div>
 
-      <!-- Liens -->
-      <div class="links-section">
+      <div class="footer-section links">
         <h4>Nos Pages</h4>
         <ul>
-          <li>
-            <a href="https://linktr.ee/aston_cigarette_electronique" target="_blank">Notre Linktree</a>
-          </li>
+          <li><router-link to="/produits">Nos Produits</router-link></li>
           <li><router-link to="/guide">Notre Guide</router-link></li>
+          <li><router-link to="/marques">Nos marques</router-link></li>
+          <li><router-link to="/contact">Contact</router-link></li>
+          <li><router-link to="/agence">Agence</router-link></li>
         </ul>
       </div>
     </div>
 
-    <!-- Logo Aston -->
-    <div class="logo-section fade-in">
-      <img src="@/assets/images/logo.png" alt="Logo Aston" />
-    </div>
-
-    <!-- Mentions légales -->
-    <div class="copyright fade-in">
+    <div class="copyright">
       <p>Moyens de paiement : Espèces, CB (Visa, Mastercard).</p>
       <ul class="footer-links">
         <li><router-link to="/mentions-legales">Mentions légales</router-link></li>
@@ -88,10 +56,10 @@
       <p>&copy; {{ yearRange }} Aston Vapote - Cigarette Électronique</p>
     </div>
 
-    <!-- Bandeau mineurs -->
     <div class="bandeau-warning">
       🚫 Interdit aux mineurs – Vente de produits contenant de la nicotine réservée aux majeurs. FUMER TUE –
-      <a href="https://tabac-info-service.fr" target="_blank">https://tabac-info-service.fr</a> – 39 89
+      <a href="https://tabac-info-service.fr" target="_blank">tabac-info-service.fr</a> –
+      <a href="tel:3989">39 89</a>
     </div>
   </footer>
 </template>
@@ -109,214 +77,119 @@ export default {
 </script>
 
 <style scoped>
-footer {
-  background-color: #1f2c3b;
-  color: #f5f5f5;
-  padding: 40px 20px 0;
+.footer-wrapper {
+  background-color: #c0392b;
+  color: #fff;
+  padding: 2rem 1rem 0;
   text-align: center;
-  //margin-top: 100px;
 }
 
-/* Animation fade-in */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
-/* Boutons itinéraires */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li,
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 0.4rem 0;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
 .map-buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .map-btn {
-  background: transparent;
-  border: 2px solid #e30613;
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
+  background: #fff;
+  color: #c0392b;
+  border: 2px solid #fff;
+  padding: 0.6rem 1.2rem;
   border-radius: 30px;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  max-width: 300px;
-  width: 90%;
+  transition: 0.3s;
 }
 
 .map-btn:hover {
-  background-color: #e30613;
+  background: transparent;
   color: #fff;
-}
-
-/* Sections principales */
-.footer-content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 30px;
-}
-
-.contact-section,
-.social-section,
-.links-section {
-  flex: 1 1 280px;
-  text-align: left;
-}
-
-.contact-section h4,
-.social-section h4,
-.links-section h4 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  color: #fff;
-}
-
-.contact-section a,
-.links-section a,
-.footer-links a,
-.white-link {
-  color: #f5f5f5;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-section a:hover,
-.links-section a:hover,
-.footer-links a:hover,
-.white-link:hover {
-  color: #ff6b6b;
-}
-
-.contact-section p,
-.links-section ul li {
-  margin: 6px 0;
-  line-height: 1.5;
-}
-
-.contact-section i,
-.social-section i {
-  margin-right: 6px;
 }
 
 .horaires h5 {
-  margin-top: 15px;
+  margin-top: 1rem;
   font-size: 1rem;
-  color: #ccc;
+  color: #fff;
 }
 
 .horaires ul {
-  list-style: none;
   padding: 0;
-  margin: 0;
+  list-style: none;
   font-size: 0.95rem;
+  margin: 0.5rem 0 0;
 }
 
-.social-section a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  margin-top: 10px;
-}
-
-.links-section ul {
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
   list-style: none;
   padding: 0;
-  margin: 0;
-}
-
-.links-section ul li {
-  margin-bottom: 8px;
-}
-
-/* Logo Aston */
-.logo-section {
-  margin: 30px 0 20px;
-}
-
-.logo-section img {
-  width: 80px;
-  height: auto;
-}
-
-/* Mentions légales */
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px 0;
-  margin: 10px 0 0;
-}
-
-.footer-links li {
-  display: inline;
+  margin: 1rem 0;
 }
 
 .footer-links a {
   font-size: 0.95rem;
+  color: #fff;
 }
 
 .copyright {
   font-size: 0.9rem;
-  line-height: 1.6;
-  color: #ccc;
-  margin-bottom: 20px;
+  padding-bottom: 1rem;
 }
 
-/* Bandeau rouge */
 .bandeau-warning {
-  background-color: #e30613;
-  color: #fff;
+  background-color: #fff;
+  color: #c0392b;
   font-weight: bold;
-  padding: 14px 20px;
+  padding: 1rem;
   font-size: 0.95rem;
-  line-height: 1.6;
+  text-align: center;
   width: 100%;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 2rem;
 }
 
 .bandeau-warning a {
-  color: #fff;
+  color: #c0392b;
   font-weight: bold;
   text-decoration: underline;
 }
 
 .bandeau-warning a:hover {
-  color: #ffeaea;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .contact-section,
-  .social-section,
-  .links-section {
-    text-align: center;
-  }
-
-  .map-buttons {
-    flex-direction: column;
-  }
+  color: #922b21;
 }
 </style>

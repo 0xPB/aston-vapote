@@ -33,3 +33,14 @@ export default {
   }
 };
 </script>
+<style>
+  /* Évite le débordement horizontal */
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+</style>

@@ -4,7 +4,7 @@
       <h2 class="fade-in" style="animation-delay: 0ms;">Contactez-nous</h2>
 
       <div class="fade-in" style="animation-delay: 100ms; text-align: center; margin-bottom: 20px;">
-        <p>Vous pouvez aussi nous contacter via notre page Facebook :</p>
+        <p>Vous pouvez nous contacter via Facebook ou en remplissant le formulaire ci-dessous.</p>
         <a
             href="https://www.facebook.com/astonvapote"
             target="_blank"
@@ -14,7 +14,7 @@
         </a>
       </div>
 
-      <form @submit.prevent="submitForm" class="fade-in" style="animation-delay: 200ms;">
+      <form @submit.prevent="submitForm" class="fade-in" style="animation-delay: 200ms;" autocomplete="off">
         <div class="form-group">
           <label for="nom">Nom *</label>
           <input type="text" id="nom" v-model="nom" required placeholder="Votre nom complet" />
@@ -36,17 +36,6 @@
         </div>
 
         <div class="form-group">
-          <label for="sujet">Sujet *</label>
-          <select id="sujet" v-model="sujet" required>
-            <option disabled value="">-- Sélectionnez un sujet --</option>
-            <option>Demande d'information</option>
-            <option>Support technique</option>
-            <option>Partenariat</option>
-            <option>Autre</option>
-          </select>
-        </div>
-
-        <div class="form-group">
           <label for="message">Message *</label>
           <textarea id="message" v-model="message" rows="5" required placeholder="Votre message ici..."></textarea>
         </div>
@@ -60,6 +49,11 @@
           />
           <label for="acceptConditions">J’accepte les conditions d’utilisation *</label>
         </div>
+
+        <p style="font-size: 0.9em; margin-top: -10px; margin-bottom: 20px; color: #555;">
+          * En soumettant ce formulaire, vous acceptez que vos données soient traitées via le service EmailJS.<br />
+          Ces données ne seront utilisées que pour répondre à votre message et ne seront pas partagées avec des tiers.
+        </p>
 
         <button type="submit">Envoyer</button>
       </form>
@@ -76,7 +70,6 @@ export default {
       prenom: '',
       email: '',
       telephone: '',
-      sujet: '',
       message: '',
       acceptConditions: false
     };
@@ -85,11 +78,11 @@ export default {
     submitForm() {
       if (this.acceptConditions) {
         alert('Formulaire soumis avec succès !');
+        // Intégration EmailJS possible ici
         this.nom = '';
         this.prenom = '';
         this.email = '';
         this.telephone = '';
-        this.sujet = '';
         this.message = '';
         this.acceptConditions = false;
       } else {
@@ -138,7 +131,6 @@ form label {
 form input[type="text"],
 form input[type="email"],
 form input[type="tel"],
-form select,
 form textarea {
   width: 100%;
   padding: 10px;
@@ -155,7 +147,7 @@ form textarea {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .checkbox-group input[type="checkbox"] {
