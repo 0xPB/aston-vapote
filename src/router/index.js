@@ -57,7 +57,7 @@ const routes = [
         meta: { requiresAgeVerification: true }
     },
     {
-        path: '/agence',
+        path: '/boutique',
         name: 'Agencie',
         component: AgenciePage,
         meta: { requiresAgeVerification: true }

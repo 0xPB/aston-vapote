@@ -40,9 +40,9 @@
         <ul>
           <li><router-link to="/produits">Nos Produits</router-link></li>
           <li><router-link to="/guide">Notre Guide</router-link></li>
-          <li><router-link to="/marques">Nos marques</router-link></li>
+          <li><router-link to="/marques">Nos Marques</router-link></li>
           <li><router-link to="/contact">Contact</router-link></li>
-          <li><router-link to="/agence">Agence</router-link></li>
+          <li><router-link to="/agence">Notre Boutique</router-link></li>
         </ul>
       </div>
     </div>
