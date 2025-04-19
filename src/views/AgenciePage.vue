@@ -13,9 +13,11 @@
         <img src="../assets/images/local-placeholder.jpg" alt="Photo des locaux" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px;" />
       </div>
 
+      <!-- Carte Google Maps désactivée -->
+      <!--
       <div id="map" class="fade-in" style="animation-delay: 300ms;">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.718142958589!2d-0.629067923825167!3d44.88363637107053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d8ff0a1fcb15%3A0x2f7caa5e9ed4212d!2s19%20Av.%20du%20M%C3%A9doc%2C%2033320%20Eysines!5e0!3m2!1sfr!2sfr!4v1680256601621"
+            src="https://www.google.com/maps/embed?pb=..."
             width="100%"
             height="300"
             style="border:0;"
@@ -23,22 +25,17 @@
             loading="lazy"
         ></iframe>
       </div>
+      -->
 
       <div id="avis" class="avis-container fade-in" style="animation-delay: 500ms;">
         <h3>Avis de nos clients</h3>
-        <div
-            class="avis-marquee"
-            @mouseover="stopScroll"
-            @mouseleave="startScroll"
-            ref="avisMarquee"
-        >
-          <div class="avis-track" :class="{ paused: isPaused }">
-            <span>⭐️⭐️⭐️⭐️⭐️ Super accueil et très bons conseils !</span>
-            <span>⭐️⭐️⭐️⭐️⭐️ Boutique agréable, personnel au top !</span>
-            <span>⭐️⭐️⭐️⭐️⭐️ Grand choix et toujours bien conseillé !</span>
-            <span>⭐️⭐️⭐️⭐️⭐️ Service rapide et efficace !</span>
-            <span>⭐️⭐️⭐️⭐️⭐️ Je recommande à 100% !</span>
+        <div class="avis-slider">
+          <button @click="prevAvis">⬅️</button>
+          <div class="avis-content">
+            <p>{{ '⭐️'.repeat(currentAvis.note) }}</p>
+            <p>{{ currentAvis.commentaire }}</p>
           </div>
+          <button @click="nextAvis">➡️</button>
         </div>
       </div>
     </main>
@@ -46,19 +43,45 @@
 </template>
 
 <script>
+import ratings from '../assets/data/ratings.json';
+
 export default {
   data() {
     return {
-      isPaused: false
+      avisClients: ratings,
+      currentIndex: 0,
+      intervalId: null
     };
   },
-  methods: {
-    stopScroll() {
-      this.isPaused = true;
-    },
-    startScroll() {
-      this.isPaused = false;
+  computed: {
+    currentAvis() {
+      return this.avisClients[this.currentIndex] || { commentaire: '', note: 0 };
     }
+  },
+  methods: {
+    nextAvis() {
+      this.currentIndex = (this.currentIndex + 1) % this.avisClients.length;
+      this.restartInterval();
+    },
+    prevAvis() {
+      this.currentIndex = (this.currentIndex - 1 + this.avisClients.length) % this.avisClients.length;
+      this.restartInterval();
+    },
+    restartInterval() {
+      clearInterval(this.intervalId);
+      this.startAutoRotation();
+    },
+    startAutoRotation() {
+      this.intervalId = setInterval(() => {
+        this.nextAvis();
+      }, 10000); // 10 secondes
+    }
+  },
+  mounted() {
+    this.startAutoRotation();
+  },
+  beforeUnmount() {
+    clearInterval(this.intervalId);
   }
 };
 </script>
@@ -79,60 +102,39 @@ export default {
   }
 }
 
-#map {
-  height: 300px;
-  width: 100%;
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 .avis-container {
   margin-top: 30px;
   background: #f9f9f9;
   padding: 15px;
   border-radius: 10px;
+  text-align: center;
 }
 
-.avis-marquee {
-  overflow-x: auto;
-  white-space: nowrap;
-  cursor: grab;
+.avis-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
-.avis-marquee::-webkit-scrollbar {
-  height: 6px;
+.avis-content {
+  max-width: 600px;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.avis-marquee::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-
-.avis-track {
-  display: inline-flex;
-  gap: 50px;
-  animation: scroll 30s linear infinite;
-  padding-bottom: 10px;
-}
-
-.avis-track.paused {
-  animation-play-state: paused;
-}
-
-.avis-track span {
+.avis-content p {
+  margin: 5px 0;
   font-size: 1.1rem;
   font-weight: 500;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+.avis-slider button {
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 </style>
