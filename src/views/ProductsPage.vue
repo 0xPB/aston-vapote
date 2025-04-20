@@ -1,160 +1,137 @@
 <template>
   <div class="products-page">
-    <main>
-      <h2>Nos Produits</h2>
-      <div class="card-container">
-        <div
-            class="card"
-            v-for="(product, index) in products"
-            :key="index"
-            :class="{ 'fade-in': true }"
-            :style="{ animationDelay: `${index * 100}ms` }"
-        >
-          <div
-              v-if="product.badge"
-              :class="['badge', product.badge === 'BEST SELLER' ? 'best-seller' : 'new']"
-          >
-            {{ product.badge }}
-          </div>
-          <img :src="productImage" :alt="product.alt" />
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.description }}</p>
-          <button class="cta-btn">Découvrir</button>
+    <h1 class="page-title">Nos Produits</h1>
+
+    <input
+        v-model="searchTerm"
+        type="text"
+        placeholder="Rechercher un produit..."
+        class="search-bar"
+    />
+
+    <div class="products-grid">
+      <div
+          v-for="product in filteredProducts"
+          :key="product.title"
+          class="product-card"
+      >
+        <img
+            :src="`/assets/images/${product.image}`"
+            :alt="product.alt"
+            class="product-image"
+        />
+        <div class="product-info">
+          <span v-if="product.badge" class="product-badge">{{ product.badge }}</span>
+          <h2 class="product-title">{{ product.title }}</h2>
+          <p class="product-description">{{ product.description }}</p>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 
 <script>
-import productsData from '@/assets/data/products.json';
-import productImage from '@/assets/images/produit.png';
+import productsData from "@/assets/data/products.json"; // adapte le chemin si besoin
 
 export default {
-  name: 'ProductsPage',
+  name: "ProductsPage",
   data() {
     return {
-      products: productsData,
-      productImage
+      searchTerm: "",
+      products: productsData
     };
+  },
+  computed: {
+    filteredProducts() {
+      const term = this.searchTerm.toLowerCase();
+      return this.products.filter(product =>
+          product.title.toLowerCase().includes(term)
+      );
+    }
   }
 };
 </script>
 
 <style scoped>
-
 .products-page {
-  padding: 1.5rem;
-  background-color: #f9f9f9;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
-h2 {
+.page-title {
   text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  color: #000;
+  margin-bottom: 1rem;
 }
 
-.card-container {
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto 2rem;
+  padding: 10px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.products-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
-  .card-container {
+@media (max-width: 900px) {
+  .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 900px) {
-  .card-container {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-.card {
-  position: relative;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-.card img {
-  width: 100%;
-  max-width: 140px;
-  height: auto;
-  margin: 0 auto 1rem auto;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.card h3 {
-  color: #e30613;
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-}
-
-.card p {
-  color: #333;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  min-height: 48px;
-}
-
-.cta-btn {
-  background-color: #e30613;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cta-btn:hover {
-  background-color: #c00510;
-}
-
-.badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 5px 10px;
+.product-card {
+  border: 1px solid #eee;
   border-radius: 12px;
-  z-index: 1;
+  padding: 1rem;
+  text-align: center;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-info {
+  margin-top: 1rem;
+}
+
+.product-badge {
+  background-color: #e63946;
   color: white;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
 
-.badge.new {
-  background-color: #e30613;
+.product-title {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
-.badge.best-seller {
-  background-color: #6a0dad;
+.product-description {
+  font-size: 0.95rem;
+  color: #555;
 }
 </style>
