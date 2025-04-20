@@ -18,7 +18,7 @@
         >
           <div class="image-wrapper">
             <img
-                :src="`/assets/images/products/${product.image}`"
+                :src="getImageUrl(product.image)"
                 :alt="product.alt"
             />
             <span
@@ -62,6 +62,11 @@ export default {
           }))
           .filter(product => product.title.toLowerCase().includes(term));
     }
+  },
+  methods: {
+    getImageUrl(image) {
+      return require(`@/assets/images/products/${image}`);
+    }
   }
 };
 </script>
@@ -71,6 +76,7 @@ export default {
   padding: 1.5rem;
   max-width: 1200px;
   margin: auto;
+  background-color: #ffffff;
 }
 
 h2 {
