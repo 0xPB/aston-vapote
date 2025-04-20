@@ -8,6 +8,9 @@
       <!-- Header affiché sur toutes les pages -->
       <HeaderComponent />
 
+      <!-- Bannière promo sous le header -->
+      <PromoBanner />
+
       <!-- Contenu des pages -->
       <router-view />
 
@@ -28,7 +31,8 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import AgePopup from '@/components/AgePopup.vue';
 import CookieConsent from '@/components/CookieConsent.vue';
-import UnderConstruction from '@/components/UnderConstruction.vue'; // à ajouter
+import UnderConstruction from '@/components/UnderConstruction.vue';
+import PromoBanner from '@/components/PromoBanner.vue'; // 👈 Ajout du composant promo
 
 export default {
   name: 'App',
@@ -37,7 +41,8 @@ export default {
     FooterComponent,
     AgePopup,
     CookieConsent,
-    UnderConstruction
+    UnderConstruction,
+    PromoBanner // 👈 Déclaration ici aussi
   },
   data() {
     return {
