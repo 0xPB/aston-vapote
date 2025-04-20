@@ -52,6 +52,7 @@
       <ul class="footer-links">
         <li><router-link to="/mentions-legales">Mentions légales</router-link></li>
         <li><router-link to="/politique-confidentialite">Politique de confidentialité</router-link></li>
+        <li><a href="#" @click.prevent="showCookieBanner">Gérer les cookies</a></li>
       </ul>
       <p>&copy; {{ yearRange }} Aston Vapote - Cigarette Électronique</p>
     </div>
@@ -61,21 +62,33 @@
       <a href="https://tabac-info-service.fr" target="_blank">tabac-info-service.fr</a> –
       <a href="tel:3989">39 89</a>
     </div>
+
+    <!-- Bannière de cookies -->
+    <CookieConsent ref="cookieConsent" />
   </footer>
 </template>
 
 <script>
+import CookieConsent from './CookieConsent.vue';
+
 export default {
   name: "FooterComponent",
+  components: {
+    CookieConsent
+  },
   computed: {
     yearRange() {
       const currentYear = new Date().getFullYear();
       return currentYear === 2025 ? "2025" : `2025–${currentYear}`;
     }
+  },
+  methods: {
+    showCookieBanner() {
+      this.$refs.cookieConsent.showBanner = true;
+    }
   }
 };
 </script>
-
 <style scoped>
 .footer-wrapper {
   background-color: #c0392b;
@@ -192,4 +205,49 @@ export default {
 .bandeau-warning a:hover {
   color: #922b21;
 }
+
+/* ✅ CSS pour la bannière de cookies */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #222;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-banner p {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:first-child {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.buttons button:last-child {
+  background-color: #dc3545;
+  color: #fff;
+}
+
 </style>
