@@ -45,7 +45,6 @@ export default {
 <style scoped>
 .guide-page {
   padding: 1.5rem;
-  background-color: #ffffff;
 }
 
 h2 {

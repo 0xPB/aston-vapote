@@ -2,31 +2,31 @@
   {
     "title": "GeekVape",
     "description": "GeekVape est une marque innovante connue pour ses cigarettes électroniques robustes et performantes comme la série Aegis, très appréciée pour leur résistance à l'eau et aux chocs.",
-    "image": "produit.png"
+    "image": "geekvape.png"
   },
   {
     "title": "Voopoo",
     "description": "Voopoo s'est imposée grâce à ses chipsets performants et ses pods ergonomiques comme le Drag X, alliant design élégant et technologie de pointe.",
-    "image": "produit.png"
+    "image": "voopoo.png"
   },
   {
     "title": "Smok",
     "description": "Smok est une marque emblématique du domaine de la cigarette électronique, réputée pour ses kits complets puissants et ses clearomiseurs performants comme le TFV18.",
-    "image": "produit.png"
+    "image": "smok.png"
   },
   {
     "title": "Vaporesso",
     "description": "Avec ses produits à la fois fiables et stylés, Vaporesso propose des gammes pour débutants et experts, comme les célèbres XROS et Gen.",
-    "image": "produit.png"
+    "image": "vaporesso.png"
   },
   {
     "title": "Innokin",
     "description": "Innokin est une marque respectée pour ses produits simples d'utilisation et durables, idéale pour les primo-vapoteurs avec des modèles comme l'Endura T20.",
-    "image": "produit.png"
+    "image": "innokin.png"
   },
   {
     "title": "Alfaliquid",
     "description": "Marque française pionnière dans les e-liquides, Alfaliquid offre une large gamme de saveurs, élaborées avec des ingrédients de haute qualité et certifiés.",
-    "image": "produit.png"
+    "image": "alfaliquid.png"
   }
 ]

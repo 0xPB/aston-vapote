@@ -14,7 +14,7 @@
             :key="index"
             :style="{ animationDelay: `${index * 100}ms` }"
         >
-          <img :src="brandImage" :alt="brand.title" />
+          <img :src="getImageUrl(brand.image)" :alt="brand.title" />
           <h3>{{ brand.title }}</h3>
           <p>{{ brand.description }}</p>
         </div>
@@ -25,15 +25,18 @@
 
 <script>
 import brandsData from '@/assets/data/brands.json';
-import brandImage from '@/assets/images/produit.png';
 
 export default {
   name: 'BrandsPage',
   data() {
     return {
-      brands: brandsData,
-      brandImage
+      brands: brandsData
     };
+  },
+  methods: {
+    getImageUrl(image) {
+      return require(`@/assets/images/brands/${image}`);
+    }
   }
 };
 </script>
@@ -41,7 +44,6 @@ export default {
 <style scoped>
 .brands-page {
   padding: 1.5rem;
-  background-color: #ffffff;
 }
 
 h2 {
