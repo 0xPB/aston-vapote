@@ -1,8 +1,6 @@
 <template>
   <div v-if="showBanner" class="cookie-banner">
-    <p>
-      Ce site utilise Google Analytics pour mesurer l’audience. Vous pouvez accepter ou refuser ce suivi.
-    </p>
+    <p>Nous utilisons des cookies pour améliorer votre expérience et mieux comprendre vos besoins. Vous pouvez refuser à tout moment.</p>
     <div class="buttons">
       <button @click="acceptCookies">Accepter</button>
       <button @click="declineCookies">Refuser</button>
