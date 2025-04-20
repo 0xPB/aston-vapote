@@ -2,11 +2,7 @@
   <div v-if="!isVerified" class="age-overlay">
     <div class="age-popup">
       <h2>Aston Cigarette Électronique</h2>
-      <p>
-        Ce site est réservé aux personnes majeures. Êtes-vous majeur(e) ?
-        <br />
-        <strong>En cliquant sur "OUI", vous acceptez également l’utilisation de cookies de mesure d’audience (Google Analytics).</strong>
-      </p>
+      <p>Ce site est réservé aux personnes majeures. Êtes-vous majeur(e) ?</p>
       <div class="buttons">
         <button @click="verify(true)">OUI</button>
         <button @click="verify(false)">NON</button>
@@ -24,40 +20,20 @@ export default {
     };
   },
   mounted() {
+    console.log('🎉 AgePopup monté');
     this.isVerified = localStorage.getItem('isAgeVerified') === 'true';
     if (!this.isVerified) {
       document.body.style.overflow = 'hidden';
-    } else if (localStorage.getItem('cookieConsent') === 'accepted') {
-      this.loadAnalytics();
     }
   },
   methods: {
     verify(answer) {
       if (answer) {
         localStorage.setItem('isAgeVerified', 'true');
-        localStorage.setItem('cookieConsent', 'accepted');
-        this.loadAnalytics();
         this.isVerified = true;
-        document.body.style.overflow = '';
+        document.body.style.overflow = ''; // réactive scroll
       } else {
         window.location.href = 'https://www.google.fr';
-      }
-    },
-    loadAnalytics() {
-      if (!window.gtag) {
-        const script1 = document.createElement('script');
-        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-F2JKZ66E4D';
-        script1.async = true;
-        document.head.appendChild(script1);
-
-        const script2 = document.createElement('script');
-        script2.innerHTML = `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-F2JKZ66E4D');
-        `;
-        document.head.appendChild(script2);
       }
     }
   }
@@ -85,11 +61,6 @@ export default {
   text-align: center;
   max-width: 400px;
   width: 90%;
-}
-
-.age-popup p {
-  margin-top: 10px;
-  font-size: 16px;
 }
 
 .buttons {
